@@ -1,0 +1,94 @@
+
+.createTodoContainer h1 {
+    padding: 30px 0 25px 25px;
+}
+.todoForm form{
+    display: flex;
+    flex-direction: column; 
+    gap: 40px;
+}
+.todoFormGroup {
+    margin-left: 25px;
+    position: relative;
+}
+.todoFormGroup input {
+    width: 325px;
+    height: 45px;
+    border: 2px solid #174031;
+    border-radius: 12px;
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+.todoFormGroup textarea {
+    width: 325px;
+    height: 160px;
+    border: 2px solid #174031;
+    border-radius: 12px;
+    padding: 10px 0 0 10px;
+    font-size: 15px;
+}
+.createTodoBtn {
+  background-color: #2c7359;
+  color: #fff;
+  font-size: 24px;
+  border-radius: 11px;
+  border: none;
+  padding: 15px;
+  font-family: "Zen Dots", sans-serif;
+  margin: 10px auto;
+  text-decoration: none;
+  width: 335px;
+  text-align: center;
+}
+
+.savedTodosContainer h1 {
+    padding: 30px 0 25px 25px;
+}
+
+.savedTodosList {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    list-style: none;
+    margin-left: 25px;
+}
+.listLabel {
+    display: flex;
+    align-items: center; 
+    padding: 10px; 
+    border: 2px solid #174031;
+    border-radius: 12px; 
+    width: 300px; 
+}
+.text_content {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.listInput {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px; 
+}
+
+.errorText {
+    color: red;
+    font-size: 15px;
+    position: absolute;
+    top: -25px; 
+  }
+  .groupButton {
+    border: none;
+    border-radius: 5px;
+    background-color: #ccc;
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .activeGroup {
+    background-color: black;
+    color: white;
+  }
