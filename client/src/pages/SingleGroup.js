@@ -6,14 +6,12 @@ import PaginationHook from "../hooks/PaginationHook.jsx";
 import TodoList from "../components/TodoList";
 import Pagination from "../components/Pagination";
 
-
 const SingleGroup = () => {
   const { groupName } = useParams();
   const { todos, setTodos, expandedTodoId, toggleTodo, deleteTodo } =
     TodoLogicHook();
-  const { currentItems, totalPages, currentPage, goToPage } = PaginationHook(
-    todos
-  );
+  const { currentItems, totalPages, currentPage, goToPage } =
+    PaginationHook(todos);
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -25,9 +23,13 @@ const SingleGroup = () => {
         const data = await response.json();
 
         if (groupName === "All") {
-          setTodos(data);
+          setTodos(Array.isArray(data) ? data : []);
         } else {
-          setTodos(data.filter((todo) => todo.group === groupName));
+          setTodos(
+            Array.isArray(data)
+              ? data.filter((todo) => todo.group === groupName)
+              : []
+          );
         }
       } catch (error) {
         console.error("Error fetching todos: ", error);
@@ -39,10 +41,10 @@ const SingleGroup = () => {
 
   return (
     <div className={styles.singleGroupContainer}>
-      <h1 style={{color: "white"}}>{groupName} Todos</h1>
+      <h1 style={{ color: "white" }}>{groupName} Todos</h1>
 
       <TodoList
-        todos={currentItems} // Bara todos på den aktuella sidan visas
+        todos={currentItems}
         expandedTodoId={expandedTodoId}
         toggleTodo={toggleTodo}
         deleteTodo={deleteTodo}

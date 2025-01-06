@@ -149,11 +149,11 @@ export default function RegisterForm() {
           </form>
 
           <h4
-            style={{ marginTop: "10px", fontWeight: "400", fontSize: "14px" }}
+            style={{ marginTop: "10px", fontWeight: "400", fontSize: "14px", color: "white" }}
           >
             Already have an account?{" "}
             <Link to="/signin">
-              <span style={{ color: "white", textDecoration: "underline" }}>
+              <span style={{ color: "#FF6500", textDecoration: "underline" }}>
                 Log in
               </span>
             </Link>{" "}

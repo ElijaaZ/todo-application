@@ -94,6 +94,7 @@
   
   .checkbox {
     margin-right: 10px;
+    cursor: pointer;
   }
   
   .todoContent {
@@ -107,6 +108,7 @@
     padding: 10px;
     background-color: white;
     border-radius: 0 0 5px 5px;
+    word-wrap: break-word;
   }
   .today_container h2 {
     color: white;

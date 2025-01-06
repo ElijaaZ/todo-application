@@ -94,10 +94,10 @@ export default function LoginForm() {
             </button>
           </form>
 
-          <h4 style={{ marginTop: "10px", fontWeight: "400", fontSize: "14px" }}>
+          <h4 style={{ marginTop: "10px", fontWeight: "400", fontSize: "14px", color: "white"}}>
             Don't have an account yet?&nbsp;
             <Link to="/register">
-              <span style={{ color: "white", textDecoration: "underline" }}>
+              <span style={{ textDecoration: "underline", color: "#FF6500"}}>
                 Sign up
               </span>
             </Link>

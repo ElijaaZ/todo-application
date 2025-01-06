@@ -11,7 +11,7 @@ const todoSchema = new mongoose.Schema(
         },
         group: {
             type: String,
-            enum: ['General', 'Family', 'Sports', 'Study', 'Work'],
+            enum: ['General', 'Family', 'Sports', 'Study', 'Work', "Shopping", "Finance"],
             required: true,
         },
         date: {
