@@ -4,7 +4,10 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "client": "npm start --prefix client",
+    "server": "npm start --prefix server",
+    "install-all": "npm install --prefix client && npm install --prefix server"
   },
   "keywords": [],
   "author": "",
