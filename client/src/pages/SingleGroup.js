@@ -1,52 +1,60 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import styles from "../styles/groups.module.css";
+import styles from "../styles/todos.module.css";
+import TodoLogicHook from "../hooks/TodoLogicHook.jsx";
+import PaginationHook from "../hooks/PaginationHook.jsx";
+import TodoList from "../components/TodoList";
+import Pagination from "../components/Pagination";
+
 
 const SingleGroup = () => {
-    const { groupName } = useParams();
-    const [todos, setTodos] = useState([]);
+  const { groupName } = useParams();
+  const { todos, setTodos, expandedTodoId, toggleTodo, deleteTodo } =
+    TodoLogicHook();
+  const { currentItems, totalPages, currentPage, goToPage } = PaginationHook(
+    todos
+  );
 
-    useEffect(() => {
-        const fetchTodos = async () => {
-            try {
-                const response = await fetch("http://localhost:5000/api/todos", {
-                    credentials: "include",
-                });
+  useEffect(() => {
+    const fetchTodos = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/todos", {
+          credentials: "include",
+        });
 
-                const data = await response.json();
+        const data = await response.json();
 
-                if (groupName === "All") {
-                    setTodos(data);
-                } else {
-                    setTodos(data.filter(todo => todo.group === groupName));
-                }
-            } catch (error) {
-                console.error("Error fetching todos: ", error);
-            }
-        };
-        
-        fetchTodos();
-    }, [groupName]);
+        if (groupName === "All") {
+          setTodos(data);
+        } else {
+          setTodos(data.filter((todo) => todo.group === groupName));
+        }
+      } catch (error) {
+        console.error("Error fetching todos: ", error);
+      }
+    };
 
-
+    fetchTodos();
+  }, [groupName, setTodos]);
 
   return (
     <div className={styles.singleGroupContainer}>
-      <h1>{groupName} Todos</h1>
-      <div className={styles.todoList}>
-        {todos.length > 0 ? (
-          todos.map((todo) => (
-            <div key={todo._id} className={styles.todoItem}>
-              <h3>{todo.title}</h3>
-              <p>{todo.description}</p>
-            </div>
-          ))
-        ) : (
-          <p>No todos found for this group.</p>
-        )}
-      </div>
+      <h1 style={{color: "white"}}>{groupName} Todos</h1>
+
+      <TodoList
+        todos={currentItems} // Bara todos på den aktuella sidan visas
+        expandedTodoId={expandedTodoId}
+        toggleTodo={toggleTodo}
+        deleteTodo={deleteTodo}
+      />
+
+      <Pagination
+        totalPages={totalPages}
+        currentPage={currentPage}
+        goToPage={goToPage}
+      />
     </div>
   );
 };
 
-export default SingleGroup
+export default SingleGroup;

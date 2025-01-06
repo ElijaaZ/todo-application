@@ -2,8 +2,7 @@ const Todo = require("../models/Todo");
 
 exports.createTodo = async (req, res) => {
   try {
-    const { title, description, group } = req.body;
-    
+    const { title, description, group, date } = req.body;
 
     if (!title) {
       return res.status(400).json({ message: "Title is required" });
@@ -13,10 +12,15 @@ exports.createTodo = async (req, res) => {
         return res.status(400).json({ message: "Group is required" });
       }
 
+      if (!date) {
+        return res.status(400).json({ message: "Date is required"})
+      }
+
     const todoData = {
       title,
       description,
-      group
+      group,
+      date
     };
 
     if (req.user && req.user.userId) {
@@ -31,6 +35,23 @@ exports.createTodo = async (req, res) => {
     console.error(error);
     return res.status(500).json({ message: "Server error" });
   }
+};
+
+exports.getTodaysTodos = async (req, res) => {
+    try {
+        const today = new Date();
+        const startOfDay = new Date(today.setHours(0, 0, 0, 0));
+        const endOfDay = new Date(today.setHours(23, 59, 59, 999));
+
+        const todos = await Todo.find({
+            user: req.user.userId,
+            date: { $gte: startOfDay, $lte: endOfDay },
+        });
+        return res.status(200).json(todos);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Server error" });
+    }
 };
 
 exports.getTodos = async (req, res) => {

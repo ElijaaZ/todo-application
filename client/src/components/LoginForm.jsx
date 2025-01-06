@@ -42,15 +42,14 @@ export default function LoginForm() {
       if (response.ok) {
         dispatch({ type: "LOGIN", payload: data.user });
         setTimeout(() => {
-          navigate("/");  // Navigera tillbaka till startsidan
+          navigate("/");
         }, 2000);
       } else {
-        // Här hanterar vi bara generella fel
         setErrors({ general: data.errors ? data.errors[0].msg : "An unexpected error occurred." });
+        setSubmitting(false);
       }
     } catch (error) {
       setErrors({ general: "An unexpected error occurred." });
-    } finally {
       setSubmitting(false);
     }
   };

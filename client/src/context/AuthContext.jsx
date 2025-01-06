@@ -1,11 +1,10 @@
 import { createContext, useReducer, useEffect } from "react";
 
-// Initial state för AuthContext
+
 const initialState = {
-  user: null,  // Användarinformation, t.ex. username eller token
+  user: null,  
 };
 
-// Reducer för att hantera LOGIN och LOGOUT
 const rootReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
@@ -17,14 +16,11 @@ const rootReducer = (state, action) => {
   }
 };
 
-// Skapa AuthContext
 const AuthContext = createContext();
 
-// Provider för AuthContext
 const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(rootReducer, initialState);
 
-  // Kolla om det finns en inloggad användare i localStorage vid första sidladdningen
   useEffect(() => {
     const user = JSON.parse(window.localStorage.getItem("user"));
     if (user) {
@@ -32,7 +28,6 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  // När användaren loggar in/ut, uppdatera localStorage
   useEffect(() => {
     if (state.user) {
       window.localStorage.setItem("user", JSON.stringify(state.user));

@@ -47,22 +47,21 @@ export default function RegisterForm() {
           navigate("/signin");
         }, 2000);
       } else {
-        // Hantera både valideringsfel och existingUser-fel (errors array)
         if (data.errors) {
           const fieldErrors = {};
           data.errors.forEach((error) => {
-            fieldErrors[error.path] = error.msg; // 'path' används som nyckel i frontend
+            fieldErrors[error.path] = error.msg;
           });
           setErrors(fieldErrors);
         } else {
           setErrors({
             general: "An error occurred, but no details were provided.",
           });
+          setSubmitting(false);
         }
       }
     } catch (error) {
       setErrors({ general: "An unexpected error occurred." });
-    } finally {
       setSubmitting(false);
     }
   };

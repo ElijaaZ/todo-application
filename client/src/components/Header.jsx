@@ -3,13 +3,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import styles from "../styles/header.module.css";
 import {
-  FaCalendarAlt,
   FaHome,
   FaTasks,
-  FaUser,
   FaUserPlus,
   FaSignInAlt
 } from "react-icons/fa";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 import { PiSignOut } from "react-icons/pi";
 
 const Header = () => {
@@ -52,12 +51,12 @@ const Header = () => {
 
   const getTitle = (path) => {
     switch (path) {
-      case "/today":
-        return "Today";
+      case "/":
+        return "Home";
       case "/tasks":
         return "Tasks";
-      case "/profile":
-        return "Profile";
+      case "/createtodos":
+        return "Create Todo";
       case "/calendar":
         return "Calendar";
       case "/register":
@@ -79,7 +78,6 @@ const Header = () => {
 
       {menuOpen && <div className={styles.overlay} onClick={closeMenu}></div>}
 
-      {/* Menyn visas bara om menuOpen är true */}
       {menuOpen && (
         <div
           className={`${styles.menuContainer} ${menuOpen ? styles.open : ""}`}
@@ -115,13 +113,13 @@ const Header = () => {
 
           <div className={styles.menu}>
             <Link
-              to="/profile"
+              to="/createtodos"
               className={`${styles.menuItem} ${
-                isActive("/profile") ? styles.active : ""
+                isActive("/createtodos") ? styles.active : ""
               }`}
               onClick={closeMenu}
             >
-              <FaUser className={styles.iconItem} /> Profile
+              <AiOutlinePlusCircle className={styles.iconItem} /> Create Todo
             </Link>
             {!user && (
               <Link
