@@ -10,9 +10,14 @@ console.log("Server is starting...");
 // express
 const app = express();
 
+const allowedOrigins = [
+  'http://localhost:3000',
+
+]
+
 // cors
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: allowedOrigins,
   credentials: true,
 })); // Gör att din frontend kan kommunicera med din backend
 

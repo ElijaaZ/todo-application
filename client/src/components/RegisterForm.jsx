@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/register.module.css"; // Anpassa sökvägen till din CSS
+import API_BASE_URL from "../api/apiConfig";
 
 export default function RegisterForm() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export default function RegisterForm() {
     setSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/register", {
+      const response = await fetch(`${API_BASE_URL}/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

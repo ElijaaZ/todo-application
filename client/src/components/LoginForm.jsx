@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/login.module.css";
 import { AuthContext } from "../context/AuthContext";
+import API_BASE_URL from "../api/apiConfig";
 
 export default function LoginForm() {
 
@@ -28,7 +29,7 @@ export default function LoginForm() {
     setSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/signin", {
+      const response = await fetch(`${API_BASE_URL}/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

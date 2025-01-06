@@ -4,6 +4,7 @@ import TodoLogicHook from "../hooks/TodoLogicHook.jsx";
 import TodoList from "./TodoList";
 import Pagination from "./Pagination";
 import PaginationHook from "../hooks/PaginationHook.jsx";
+import API_BASE_URL from "../api/apiConfig.js";
 
 const Today = () => {
   const { todos, setTodos, expandedTodoId, toggleTodo, deleteTodo } =
@@ -22,7 +23,7 @@ const Today = () => {
   useEffect(() => {
     const fetchTodaysTodos = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/todaystodos", {
+        const response = await fetch(`${API_BASE_URL}/todaystodos`, {
           method: "GET",
           credentials: "include",
         });

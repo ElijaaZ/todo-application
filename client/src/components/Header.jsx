@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import API_BASE_URL from "../api/apiConfig";
 import { AuthContext } from "../context/AuthContext";
 import styles from "../styles/header.module.css";
 import {
@@ -40,7 +41,7 @@ const Header = () => {
   const isActive = (path) => location.pathname === path;
 
   const handleSignOut = async () => {
-    await fetch("http://localhost:5000/api/logout", {
+    await fetch(`${API_BASE_URL}/logout`, {
       method: "POST",
       credentials: "include",
     });

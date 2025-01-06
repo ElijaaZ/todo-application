@@ -5,6 +5,7 @@ import TodoLogicHook from "../hooks/TodoLogicHook.jsx";
 import PaginationHook from "../hooks/PaginationHook.jsx";
 import TodoList from "../components/TodoList";
 import Pagination from "../components/Pagination";
+import API_BASE_URL from "../api/apiConfig.js";
 
 const SingleGroup = () => {
   const { groupName } = useParams();
@@ -16,7 +17,7 @@ const SingleGroup = () => {
   useEffect(() => {
     const fetchTodos = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/todos", {
+        const response = await fetch(`${API_BASE_URL}/todos`, {
           credentials: "include",
         });
 

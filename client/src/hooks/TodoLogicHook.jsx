@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import API_BASE_URL from '../api/apiConfig';
 
 const TodoLogicHook = (initialTodos = []) => {
     const [todos, setTodos] = useState(initialTodos);
@@ -10,7 +11,7 @@ const TodoLogicHook = (initialTodos = []) => {
 
       const deleteTodo = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/deletetodo/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/deletetodo${id}`, {
                 method: "DELETE",
                 credentials: "include",
             });

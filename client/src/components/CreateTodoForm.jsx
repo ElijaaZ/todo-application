@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../styles/todos.module.css";
 import DatePicker from "react-datepicker"; // Importera DatePicker
 import "react-datepicker/dist/react-datepicker.css";
+import API_BASE_URL from "../api/apiConfig";
 
 const groups = [
   "General",
@@ -50,7 +51,7 @@ export default function CreateTodoComp() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/createtodo", {
+      const response = await fetch(`${API_BASE_URL}/createtodo`, {
         method: "POST",
         credentials: "include",
         headers: {
