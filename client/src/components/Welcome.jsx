@@ -1,6 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/home.module.css";
+import Lottie from "lottie-react";
+import Animation from "../assets/Animation.json"
 
 const Welcome = () => {
   return (
@@ -16,6 +18,9 @@ const Welcome = () => {
         <Link to="/register" className={styles.welcomeButton}>
           Register
         </Link>
+      </div>
+      <div style={{ width: "400px", margin: "0 auto" }}>
+        <Lottie animationData={Animation} loop={true} />
       </div>
     </div>
   );
