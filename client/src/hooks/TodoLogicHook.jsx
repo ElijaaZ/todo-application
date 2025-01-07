@@ -11,7 +11,7 @@ const TodoLogicHook = (initialTodos = []) => {
 
       const deleteTodo = async (id) => {
         try {
-            const response = await fetch(`${API_BASE_URL}/deletetodo${id}`, {
+            const response = await fetch(`${API_BASE_URL}/deletetodo/${id}`, {
                 method: "DELETE",
                 credentials: "include",
             });
