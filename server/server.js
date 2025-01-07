@@ -7,6 +7,9 @@ const cookieParser = require("cookie-parser");
 
 console.log("Server is starting...");
 
+console.log("NODE_ENV är satt till:", process.env.NODE_ENV);
+
+
 // express
 const app = express();
 
