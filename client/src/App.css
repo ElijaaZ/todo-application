@@ -12,6 +12,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow-y: hidden;
 }
 .app_wrapper {
   background-color: #1E3E62;
