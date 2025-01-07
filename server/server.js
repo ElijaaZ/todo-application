@@ -12,7 +12,7 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:3000',
-
+  "https://todo-application-topaz.vercel.app",
 ]
 
 // cors
