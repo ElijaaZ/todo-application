@@ -17,9 +17,10 @@ body {
 }
 .app_wrapper {
   background-color: #1E3E62;
-  width: 390px;
+  width: 100vw;
   height: 100vh;
   margin: 0 auto;
   position: relative;
   max-height: 844px;
+  max-width: 390px;
 }
