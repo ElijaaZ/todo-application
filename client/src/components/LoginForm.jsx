@@ -5,7 +5,6 @@ import { AuthContext } from "../context/AuthContext";
 import API_BASE_URL from "../api/apiConfig";
 
 export default function LoginForm() {
-
   const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -35,7 +34,7 @@ export default function LoginForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
-        credentials: 'include',
+        credentials: "include",
       });
 
       const data = await response.json();
@@ -46,7 +45,11 @@ export default function LoginForm() {
           navigate("/");
         }, 2000);
       } else {
-        setErrors({ general: data.errors ? data.errors[0].msg : "An unexpected error occurred." });
+        setErrors({
+          general: data.errors
+            ? data.errors[0].msg
+            : "An unexpected error occurred.",
+        });
         setSubmitting(false);
       }
     } catch (error) {
@@ -56,8 +59,8 @@ export default function LoginForm() {
   };
 
   return (
-    <div>
-      <div className={styles.logContainer}>
+    <div className={styles.logContainer}>
+      <div className={styles.formWrapper}>
         <h1>Sign In</h1>
         <div className={styles.logForm}>
           <form onSubmit={handleSubmit}>
@@ -84,21 +87,33 @@ export default function LoginForm() {
             </div>
 
             {errors.general && (
-          <p style={{ color: 'red', marginTop: "-25px", marginBottom: "5px"}}>{errors.general}</p>
-        )}
+              <p
+                style={{
+                  color: "red",
+                  marginTop: "-25px",
+                  marginBottom: "5px",
+                }}
+              >
+                {errors.general}
+              </p>
+            )}
 
-            <button
-              type="submit"
-              className={styles.logButton}
-            >
+            <button type="submit" className={styles.logButton}>
               {submitting ? "SIGNING IN..." : "SIGN IN"}
             </button>
           </form>
 
-          <h4 style={{ marginTop: "10px", fontWeight: "400", fontSize: "14px", color: "white"}}>
+          <h4
+            style={{
+              marginTop: "10px",
+              fontWeight: "400",
+              fontSize: "14px",
+              color: "white",
+            }}
+          >
             Don't have an account yet?&nbsp;
             <Link to="/register">
-              <span style={{ textDecoration: "underline", color: "#FF6500"}}>
+              <span style={{ textDecoration: "underline", color: "#FF6500" }}>
                 Sign up
               </span>
             </Link>

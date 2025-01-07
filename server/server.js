@@ -22,6 +22,14 @@ app.use(
   })
 ); // Gör att din frontend kan kommunicera med din backend
 
+
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  console.log("Headers:", req.headers);
+  console.log("Cookies:", req.cookies);
+  next();
+});
+
 // Middleware
 app.use(express.json()); // Hanterar JSON-body i POST-begäran
 app.use(cookieParser());

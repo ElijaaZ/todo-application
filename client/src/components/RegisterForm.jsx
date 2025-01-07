@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "../styles/register.module.css"; // Anpassa sökvägen till din CSS
+import styles from "../styles/register.module.css";
 import API_BASE_URL from "../api/apiConfig";
 
 export default function RegisterForm() {
@@ -68,8 +68,8 @@ export default function RegisterForm() {
   };
 
   return (
-    <div>
-      <div className={styles.regContainer}>
+    <div className={styles.regContainer}>
+      <div className={styles.regWrapper}>
         <h1>Register</h1>
 
         {errors.general && (
@@ -137,8 +137,17 @@ export default function RegisterForm() {
             </div>
 
             {success && (
-          <div style={{ color: "green", fontWeight: "bold", marginBottom: "15px", marginTop: "-10px" }}>{message}</div>
-        )}
+              <div
+                style={{
+                  color: "green",
+                  fontWeight: "bold",
+                  marginBottom: "15px",
+                  marginTop: "-10px",
+                }}
+              >
+                {message}
+              </div>
+            )}
 
             <button
               type="submit"
@@ -150,7 +159,12 @@ export default function RegisterForm() {
           </form>
 
           <h4
-            style={{ marginTop: "10px", fontWeight: "400", fontSize: "14px", color: "white" }}
+            style={{
+              marginTop: "10px",
+              fontWeight: "400",
+              fontSize: "14px",
+              color: "white",
+            }}
           >
             Already have an account?{" "}
             <Link to="/signin">

@@ -1,49 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap");
 
-.logContainer h1 {
-    padding: 30px 0 25px 25px;
-    font-size: 40px;
-    font-weight: 500;
-    color: white;
-  }
+.logContainer {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.formWrapper {
+  width: 100%;
+  max-width: 335px;
+}
+.formWrapper h1 {
+  font-size: 40px;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 25px;
+}
 
-  .logForm {
-    margin-left: 25px;
-    display: flex;
-    flex-direction: column;
-  }
+.logForm {
+  display: flex;
+  flex-direction: column;
+}
 
-  .logForm input {
-    margin-bottom: 40px;
-    height: 55px;
-    width: 325px;
-    border: 2px solid #0B192C;
-    border-radius: 10px;
-    font-size: 15px;
-    padding-left: 7px;
-  }
+.logForm input {
+  margin-bottom: 30px;
+  height: 55px;
+  width: 100%;
+  border: 2px solid #0B192C;
+  border-radius: 10px;
+  font-size: 15px;
+  padding-left: 7px;
+  box-sizing: border-box;
+}
 
-  .logButton {
-    background-color: #FF6500;
-    color: #fff;
-    font-size: 24px;
-    border-radius: 11px;
-    border: none;
-    width: 335px;
-    height: 55px;
-    letter-spacing: 2px;
-    font-family: 'Zen Dots', sans-serif;
-    cursor: pointer;
-  }
+.logButton {
+  background-color: #FF6500;
+  color: #FFF;
+  font-size: 24px;
+  border-radius: 11px;
+  border: none;
+  width: 100%;
+  max-width: 335px;
+  height: 55px;
+  letter-spacing: 2px;
+  font-family: "Zen Dots", sans-serif;
+  cursor: pointer;
+}
 
-  .formGroup {
-    position: relative;
-  }
-  
-  .errorText {
-    color: red;
-    font-size: 15px;
-    position: absolute;
-    top: -25px; 
-  }
-  
+.formGroup {
+  position: relative;
+}
+
+.errorText {
+  color: red;
+  font-size: 15px;
+  position: absolute;
+  top: -25px;
+}

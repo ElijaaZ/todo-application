@@ -60,8 +60,6 @@ const Header = () => {
         return "Create Todo";
       case "/calendar":
         return "Calendar";
-      case "/register":
-        return "Register";
       default:
         return "";
     }

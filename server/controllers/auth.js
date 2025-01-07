@@ -1,7 +1,7 @@
 
 const express = require('express');
 const bcrypt = require('bcrypt');
-const User = require('../models/User'); // Anpassa sökvägen efter din filstruktur
+const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 
@@ -9,7 +9,6 @@ exports.register = async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
-        // Kontrollera om användaren redan finns
         const existingUser = await User.findOne({ $or: [{ username }, { email }] });
         if (existingUser) {
             return res.status(400).json( {
@@ -17,10 +16,8 @@ exports.register = async (req, res) => {
             });
         }
 
-        // Hasha lösenordet
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Skapa ny användare
         const newUser = new User({ username, email, password: hashedPassword });
         await newUser.save();
 
@@ -50,7 +47,7 @@ exports.signin = async (req, res) => {
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-        res.cookie('token', token, { httpOnly: true });
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: "None", });
         
         return res.json({ user: { username: user.username } });
     } catch (error) {
