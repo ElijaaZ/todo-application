@@ -12,6 +12,7 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:3000',
+  'https://todo-application-1-9qa5.onrender.com'
 ]
 
 // cors
