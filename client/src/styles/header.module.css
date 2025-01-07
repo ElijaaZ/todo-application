@@ -62,12 +62,9 @@
   .menuContainer {
     position: absolute;
     top: 0;
-    height: 100vh;
+    height: 100%;
     background-color: #0B192C;
     width: 300px;
-    max-width: 390px;
-    max-height: 844px;
-    height: 100vh;
     color: white;
     transition: transform 0.3s ease;
     z-index: 1000;
