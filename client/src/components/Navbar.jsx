@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaTasks, FaHome } from "react-icons/fa";
 import styles from "../styles/navbar.module.css";
+import AddTodoButton from "./AddTodoButton";
 
 const Navbar = () => {
   return (
@@ -12,6 +13,7 @@ const Navbar = () => {
         <span>Home</span>
         </div>
       </Link>
+      <AddTodoButton/>
       <Link to="/tasks" className={styles.nav_item}>
       <div className={styles.nav_content}>
         <FaTasks className={styles.nav_icon} />

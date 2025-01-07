@@ -8,8 +8,7 @@ import CreateTodos from "./pages/CreateTodos";
 import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/Header";
 import Tasks from "./pages/Tasks";
-import Profile from "./pages/Profile";
-import AddTodoButton from "./components/AddTodoButton";
+import Profile from "./pages/Profile"
 import SingleGroup from "./pages/SingleGroup";
 import AppWrapper from "./components/AppWrapper";
 
@@ -20,7 +19,6 @@ function App() {
       <Router>
         <Navbar />
         <Header/>
-        <AddTodoButton/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signin" element={<Login />} />

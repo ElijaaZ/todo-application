@@ -120,11 +120,9 @@
   }
   .pagination {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 10px;
-    position: fixed;
-    bottom: 140px;
+    position: absolute;
+    bottom: 110px;
     left: 50%;
     transform: translateX(-50%);
   }

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const UsePagination = (items, itemsPerPage = 8) => {
+const UsePagination = (items, itemsPerPage = 7) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const totalPages = Math.ceil(items.length / itemsPerPage);

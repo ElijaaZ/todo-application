@@ -1,17 +1,14 @@
 .todoButton {
     display: flex;
     border: none;
-    border-radius: 10px;
+    border-radius: 50%;
     background-color: #FF6500;
     width: 65px;
     height: 65px;
     justify-content: center;
     align-items: center;
-    position: absolute;
-    bottom: 100px;
-    right: 20px;
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: 500;
     font-size: 28px;
     cursor: pointer;
