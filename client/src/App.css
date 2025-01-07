@@ -13,7 +13,7 @@ body {
   align-items: center;
   height: 100vh;
   width: 100vw;
-  overflow-y: hidden;
+  overflow-x: hidden;
 }
 .app_wrapper {
   background-color: #1E3E62;
