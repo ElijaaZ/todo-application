@@ -148,6 +148,8 @@
     font-weight: bold;
     border: none;
     border-radius: 5px;
+    background-color: white;
+    color: black;
   }
   .paginationButton.activePage {
     background-color: #FF6500;
