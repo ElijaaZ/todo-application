@@ -24,7 +24,7 @@
 
 .todoFormGroup textarea {
     width: 325px;
-    height: 160px;
+    height: 100px;
     border: 2px solid #174031;
     border-radius: 12px;
     padding: 10px 0 0 10px;
@@ -36,12 +36,12 @@
   font-size: 24px;
   border-radius: 11px;
   border: none;
-  padding: 13px;
   font-family: "Poppins";
   font-weight: bold;
   margin: 10px auto;
   text-decoration: none;
   width: 335px;
+  height: 55px;
   text-align: center;
   cursor: pointer;
 }
