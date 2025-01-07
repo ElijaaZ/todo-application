@@ -12,20 +12,12 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:3000',
-  "https://todo-application-topaz.vercel.app",
-  "https://todo-application-5v381ew7z-elias-projects-e6e97628.vercel.app",
 ]
 
 // cors
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: allowedOrigins,
     credentials: true, // Tillåt cookies
   })
 ); // Gör att din frontend kan kommunicera med din backend

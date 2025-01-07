@@ -124,8 +124,8 @@
     align-items: center;
     gap: 10px;
     position: fixed;
-    bottom: 150px;
-    left: 50%; /* Centrera horisontellt */
+    bottom: 140px;
+    left: 50%;
     transform: translateX(-50%);
   }
   .paginationButton {
