@@ -58,8 +58,8 @@ export default function RegisterForm() {
           setErrors({
             general: "An error occurred, but no details were provided.",
           });
-          setSubmitting(false);
         }
+        setSubmitting(false);
       }
     } catch (error) {
       setErrors({ general: "An unexpected error occurred." });
