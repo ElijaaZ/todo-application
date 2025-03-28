@@ -1,49 +1,46 @@
-
 .createTodoContainer {
-    margin-top: 30px;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  margin-top: 30px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 .todoForm {
-    width: 100%;
-    max-width: 350px;
-    display: flex;
-    flex-direction: column; 
-    gap: 20px;
-    color: white;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  color: white;
 }
 .todoFormGroup {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin-top: 25px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 25px;
 }
 .todoFormGroup label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: white;
+  font-weight: bold;
+  color: white;
 }
-.todoFormGroup input, 
-.todoFormGroup textarea, 
+.todoFormGroup input,
+.todoFormGroup textarea,
 .createTodoBtn {
-    width: 100%;
-    max-width: 100%;
-    border: 2px solid #174031;
-    border-radius: 12px;
-    padding: 10px;
-    font-size: 15px;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  border: 2px solid #174031;
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 15px;
+  box-sizing: border-box;
 }
-.todoFormGroup textarea {
-  height: 100px;
+.datepicker {
+  cursor: pointer;
 }
 
 .createTodoBtn {
-  background-color: #FF6500;
+  background-color: #ff6500;
   color: #fff;
   font-size: 24px;
   border: none;
@@ -56,106 +53,152 @@
   cursor: pointer;
 }
 .errorText {
-    color: red;
-    font-size: 15px;
-    position: absolute;
-    top: -25px; 
-  }
-  .groupButton {
-    border: none;
-    border-radius: 5px;
-    background-color: white;
-    cursor: pointer;
-    padding: 6px;
-    margin: 5px 5px 0 0;
-    color: black;
-  }
-  .groupSelection {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+  color: red;
+  font-size: 15px;
+  position: absolute;
+  top: -25px;
+}
+.groupButton {
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  padding: 6px;
+  margin: 5px 5px 0 0;
+  color: black;
+}
+.groupSelection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
-  .activeGroup {
-    background-color: black;
-    color: white;
-  }
+.activeGroup {
+  background-color: black;
+  color: white;
+}
 
-  .today_container,
-  .singleGroupContainer {
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .todoList {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .todoItem {
-    margin-top: 15px;
-  }
-  
-  .todoBox {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: white;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-  }
-  .expanded .todoBox {
-    border-radius: 5px 5px 0 0;
-  }
-  
-  .checkbox {
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
-  .todoContent {
-    flex-grow: 1;
-  }
-  
-  .toggleIcon {
-    font-size: 18px;
-  }
-  .todoDetails {
-    padding: 10px;
-    background-color: white;
-    border-radius: 0 0 5px 5px;
-    word-wrap: break-word;
-  }
-  .today_container h2 {
-    color: white;
-  }
-  .pagination {
-    display: flex;
-    gap: 10px;
-    position: absolute;
-    bottom: 110px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  .paginationButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    background-color: white;
-    color: black;
-  }
-  .paginationButton.activePage {
-    background-color: #FF6500;
-  }
+.today_container,
+.singleGroupContainer {
+  padding: 20px;
+  border-radius: 8px;
+}
 
-  input:focus, 
-  textarea:focus {
-    outline: none;
-  }
+.todoList {
+  list-style-type: none;
+  padding: 0;
+}
+
+.todoItem {
+  margin-top: 15px;
+}
+
+.todoBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+.expanded .todoBox {
+  border-radius: 5px 5px 0 0;
+}
+
+.checkbox {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid green;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkbox:checked::after {
+  content: "✓";
+  color: green;
+  position: absolute;
+  left: 4px;
+  top: -2px;
+  font-size: 16px;
+}
+
+.todoContent {
+  flex-grow: 1;
+}
+
+.toggleIcon {
+  font-size: 18px;
+}
+.todoDetails {
+  padding: 10px;
+  background-color: white;
+  border-radius: 0 0 5px 5px;
+  word-wrap: break-word;
+}
+.today_container h2 {
+  color: white;
+}
+.pagination {
+  display: flex;
+  gap: 10px;
+  position: absolute;
+  bottom: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.paginationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+}
+.paginationButton.activePage {
+  background-color: #ff6500;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  z-index: 1000;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+.close_btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

@@ -4,21 +4,10 @@ import DatePicker from "react-datepicker"; // Importera DatePicker
 import "react-datepicker/dist/react-datepicker.css";
 import API_BASE_URL from "../api/apiConfig";
 
-const groups = [
-  "General",
-  "Family",
-  "Sports",
-  "Study",
-  "Work",
-  "Shopping",
-  "Finance",
-];
-
 export default function CreateTodoComp() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    group: "General",
     date: new Date(),
   });
 
@@ -40,20 +29,12 @@ export default function CreateTodoComp() {
     });
   };
 
-  const handleGroupChange = (selectedGroup) => {
-    setFormData({
-      ...formData,
-      group: selectedGroup,
-    });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await fetch(`${API_BASE_URL}/createtodo`, {
         method: "POST",
-        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -68,7 +49,7 @@ export default function CreateTodoComp() {
         setErrors({});
         setTimeout(() => {
           setMessage("Create Todo");
-          window.location.reload()
+          window.location.reload();
         }, 1500);
       } else {
         if (data.errors) {
@@ -90,6 +71,7 @@ export default function CreateTodoComp() {
 
   return (
     <div className={styles.createTodoContainer}>
+      <h2 style={{ color: "black" }}>Create Todo</h2>
       <div className={styles.todoForm}>
         <form onSubmit={handleSubmit}>
           <div className={styles.todoFormGroup}>
@@ -105,34 +87,6 @@ export default function CreateTodoComp() {
           </div>
 
           <div className={styles.todoFormGroup}>
-            <label>Todo Group:</label>
-            <div className={styles.groupSelection}>
-              {groups.map((group) => (
-                <button
-                  type="button"
-                  key={group}
-                  className={`${styles.groupButton} ${
-                    formData.group === group ? styles.activeGroup : ""
-                  }`}
-                  onClick={() => handleGroupChange(group)}
-                >
-                  {group}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className={styles.todoFormGroup}>
-            <label>Date:</label>
-            <DatePicker
-              selected={formData.date}
-              onChange={handleDateChange}
-              dateFormat="yyyy-MM-dd"
-              portalId="root-portal"
-            />
-          </div>
-
-          <div className={styles.todoFormGroup}>
             {errors.description && (
               <p className={styles.errorText}>{errors.description}</p>
             )}
@@ -141,6 +95,17 @@ export default function CreateTodoComp() {
               placeholder="Description"
               value={formData.description}
               onChange={handleInputChange}
+            />
+          </div>
+
+          <div className={styles.todoFormGroup}>
+            <label>Date:</label>
+            <DatePicker
+              className={styles.datepicker}
+              selected={formData.date}
+              onChange={handleDateChange}
+              dateFormat="yyyy-MM-dd"
+              portalId="root-portal"
             />
           </div>
 

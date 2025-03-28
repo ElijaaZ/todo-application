@@ -1,19 +1,12 @@
-import React, { useContext} from 'react'
-import Today from '../components/Today'
-import Welcome from '../components/Welcome'
-import { AuthContext } from '../context/AuthContext'
+import React from "react";
+import Today from "../components/Today";
 
 const Home = () => {
-
-   const {
-      state: { user },
-    } = useContext(AuthContext);
-
   return (
     <div>
-      {user ? <Today/> : <Welcome/>}
+      <Today />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

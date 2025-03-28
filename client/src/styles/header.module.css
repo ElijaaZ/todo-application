@@ -1,118 +1,142 @@
 .header {
-    width: 100%;
-    height: 90px;
-    background-color: #0B192C;
-    display: flex;
-    align-items: center;
-  }
-  .hamburger {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 40px;
-    margin-left: 10px;
-    align-items: flex-start;
-    cursor: pointer;
-  }
-  .hamburger span {
-    background-color: white;
-    width: 40px;
-    height: 3px;
-    margin-bottom: 3px;
-  }
-  
-  .hamburger span:last-child {
-    margin-bottom: 0;
-    width: 25px;
-  }
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 1000;
-    cursor: pointer;
-  }
-  .menuItem.active {
-    background-color: #1E3E62;
-    border-radius: 0 20px 20px 0;
-    font-weight: bold;
-    width: 60%;
-  }
-  .menuItem {
-    padding: 20px;
-    background-color: #0B192C;
-    color: white;
-    text-align: left;
-    font-size: 16px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  .divider {
-    display: block;
-    width: 100%;
-    background-color: white;
-    height: 1px;
-    content: '';
-    margin: 10px 0;
-  }
+  width: 100%;
+  height: 90px;
+  background-color: #0b192c;
+  display: flex;
+  align-items: center;
+}
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 40px;
+  margin-left: 10px;
+  align-items: flex-start;
+  cursor: pointer;
+}
+.hamburger span {
+  background-color: white;
+  width: 40px;
+  height: 3px;
+  margin-bottom: 3px;
+}
 
+.hamburger span:last-child {
+  margin-bottom: 0;
+  width: 25px;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+.menuItem.active {
+  background-color: #1e3e62;
+  border-radius: 0 20px 20px 0;
+  font-weight: bold;
+  width: 60%;
+}
+.menuItem {
+  padding: 20px;
+  background-color: #0b192c;
+  color: white;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.divider {
+  display: block;
+  width: 100%;
+  background-color: white;
+  height: 1px;
+  content: "";
+  margin: 10px 0;
+}
+
+.menuContainer {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background-color: #0b192c;
+  width: 300px;
+  color: white;
+  transition: transform 0.5s ease;
+  transform: translateX(-100%);
+  z-index: 10;
+  border-radius: 0 25px 25px 0;
+}
+.buttonWrapper {
+  padding: 20px;
+  display: flex;
+}
+.menuContainer.show {
+  transform: translateX(0);
+}
+
+.infos {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 20px 0 0 20px;
+}
+.infos h1 {
+  font-size: 36px;
+  color: #ff6500;
+}
+.infos h2 {
+  font-size: 18px;
+  color: white;
+}
+.infos p {
+  font-size: 14px;
+  color: white;
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+.menuItem {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  height: 5px;
+  font-size: 18px;
+}
+
+.menuItem:hover {
+  background-color: #1e3e62;
+  border-radius: 0 20px 20px 0;
+  width: 60%;
+}
+.iconItem {
+  margin-right: 10px;
+}
+.pageTitle {
+  color: white;
+  margin-left: 20px;
+}
+
+@media (min-width: 768px) {
   .menuContainer {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    background-color: #0B192C;
-    width: 300px;
-    color: white;
-    transition: transform 0.3s ease;
-    z-index: 1000;
-    border-radius: 0 25px 25px 0;
+    transform: translateX(0);
   }
 
-  .infos {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin: 20px 0 0 20px;
-  }
-  .infos h1 {
-    font-size: 36px;
-    color: #FF6500;
-  }
-  .infos h2 {
-    font-size: 18px;
-    color: white;
-  }
-  .infos p {
-    font-size: 14px;
-    color: white;
-  }
-  .menu {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-top: 10px;
-  }
-  .menuItem {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-    height: 5px;
-    font-size: 18px;
+  .hamburger {
+    display: none;
   }
 
-  .menuItem:hover {
-    background-color: #1E3E62;
-    border-radius: 0 20px 20px 0;
-    width: 60%;
-  }
-  .iconItem {
-    margin-right: 10px;
+  .overlay {
+    display: none;
   }
   .pageTitle {
-    color: white;
-    margin-left: 20px;
+    padding-left: 300px;
   }
+}

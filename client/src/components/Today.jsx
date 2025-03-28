@@ -13,23 +13,15 @@ const Today = () => {
     PaginationHook(todos);
   const [error, setError] = useState(null);
 
-  const date = new Date();
-  const fullDate = date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
   useEffect(() => {
     const fetchTodaysTodos = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/todaystodos`, {
+        const response = await fetch(`${API_BASE_URL}/alltodos`, {
           method: "GET",
-          credentials: "include",
         });
 
         if (!response.ok) {
-          throw new Error("Failed to fetch todays todos.");
+          throw new Error("Failed to fetch todos.");
         }
         const data = await response.json();
         setTodos(data);
@@ -48,9 +40,7 @@ const Today = () => {
 
       {!error && (
         <h2 style={{ color: "white" }}>
-          {todos.length === 0
-            ? `No tasks for ${fullDate}`
-            : `Tasks for ${fullDate}`}
+          {todos.length === 0 ? "No tasks found" : "Tasks"}
         </h2>
       )}
 

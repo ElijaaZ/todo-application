@@ -1,8 +1,8 @@
 // server.js eller app.js
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-require("dotenv").config({ path: "./.env"});
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+require("dotenv").config({ path: "./.env" });
 const cookieParser = require("cookie-parser");
 
 console.log("Server is starting...");
@@ -11,8 +11,9 @@ console.log("Server is starting...");
 const app = express();
 
 const allowedOrigins = [
-  'https://todo-application-1-9qa5.onrender.com'
-]
+  "https://todo-application-1-9qa5.onrender.com",
+  "http://localhost:3000",
+];
 
 // cors
 app.use(
@@ -27,18 +28,16 @@ app.use(express.json()); // Hanterar JSON-body i POST-begäran
 app.use(cookieParser());
 
 // db connection
-mongoose.connect(process.env.MONGODB_URI, {})
-.then(() => console.log('**DB CONNECTED**'))
-.catch((error) => console.error("DB CONNECTION ERR => ", error));
+mongoose
+  .connect(process.env.MONGODB_URI, {})
+  .then(() => console.log("**DB CONNECTED**"))
+  .catch((error) => console.error("DB CONNECTION ERR => ", error));
 
 // import routes
-const authRoutes = require('./routes/auth');
-const todoRoutes = require('./routes/todo');
+const todoRoutes = require("./routes/todo");
 
 // Routes
-app.use('/api', authRoutes); // Använd auth-routes
-app.use('/api', todoRoutes);
-
+app.use("/api", todoRoutes);
 
 //Port
 const port = process.env.PORT || 8000;

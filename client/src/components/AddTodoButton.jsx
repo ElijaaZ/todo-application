@@ -1,20 +1,12 @@
-import React from 'react';
+import React from "react";
 import styles from "../styles/todoButton.module.css";
-import { Link, useLocation } from 'react-router-dom';
 
-const AddTodoButton = () => {
-    const location = useLocation();
-
-    if (location.pathname === "/createtodos") {
-        return null;
-    }
-
-
+const AddTodoButton = ({ onClick }) => {
   return (
-    <Link to="/createtodos"className={styles.todoButton}>
+    <button className={styles.todoButton} onClick={onClick}>
       +
-    </Link>
-  )
-}
+    </button>
+  );
+};
 
-export default AddTodoButton
+export default AddTodoButton;
