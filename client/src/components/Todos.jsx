@@ -20,7 +20,6 @@ const Todos = ({ passCreateTodo }) => {
   } = useTodoLogic();
 
   useEffect(() => {
-    // skicka createTodo till Home
     if (passCreateTodo) {
       passCreateTodo(createTodo);
     }
