@@ -110,19 +110,33 @@
   margin-right: 10px;
   width: 20px;
   height: 20px;
-  border: 1px solid green;
-  appearance: none;
-  -webkit-appearance: none;
+  border: 2px solid green;
+  border-radius: 5px;
   cursor: pointer;
   position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.checkbox::after {
+  content: "✔";
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+.checkbox:checked {
+  background: green;
 }
 
 .checkbox:checked::after {
-  content: "✓";
-  color: green;
-  position: absolute;
-  left: 4px;
-  font-size: 16px;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .todoContent {
@@ -200,4 +214,20 @@ textarea:focus {
   background: none;
   border: none;
   cursor: pointer;
+}
+.todo_info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.todo_info button {
+  width: 75px;
+  padding: 5px 0;
+  border: 2px solid #ff6500;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  color: #ff6500;
+  font-weight: bold;
+  letter-spacing: 1px;
 }

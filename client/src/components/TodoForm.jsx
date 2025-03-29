@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/todos.module.css";
-import DatePicker from "react-datepicker"; // Importera DatePicker
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import API_BASE_URL from "../api/apiConfig";
 
-export default function CreateTodoComp() {
+export default function TodoForm({
+  mode = "create",
+  onSubmit,
+  onClose,
+  initialData = {},
+}) {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -12,8 +16,19 @@ export default function CreateTodoComp() {
   });
 
   const [errors, setErrors] = useState({});
-  const [success, setSuccess] = useState(false);
-  const [message, setMessage] = useState("Create Todo");
+  const [message, setMessage] = useState(
+    mode === "edit" ? "Update Todo" : "Create Todo"
+  );
+
+  useEffect(() => {
+    if (mode === "edit" && initialData) {
+      setFormData({
+        title: initialData.title || "",
+        description: initialData.description || "",
+        date: initialData.date ? new Date(initialData.date) : new Date(),
+      });
+    }
+  }, [mode, initialData]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -31,47 +46,26 @@ export default function CreateTodoComp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await fetch(`${API_BASE_URL}/createtodo`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setSuccess(true);
-        setMessage("Todo created");
+      const success = await onSubmit(formData);
+      if (success !== false) {
+        setMessage(mode === "edit" ? "Todo updated" : "Todo created");
         setErrors({});
         setTimeout(() => {
-          setMessage("Create Todo");
-          window.location.reload();
-        }, 1500);
-      } else {
-        if (data.errors) {
-          const fieldErrors = {};
-          data.errors.forEach((error) => {
-            fieldErrors[error.path] = error.msg;
-          });
-          setErrors(fieldErrors);
-        } else {
-          setErrors({
-            general: "An error occured.",
-          });
-        }
+          setMessage(mode === "edit" ? "Update Todo" : "Create Todo");
+          onClose();
+        }, 800);
       }
     } catch (error) {
-      setErrors({ general: "An unexpected error occured." });
+      setErrors({ general: "An unexpected error occurred." });
     }
   };
 
   return (
     <div className={styles.createTodoContainer}>
-      <h2 style={{ color: "black" }}>Create Todo</h2>
+      <h2 style={{ color: "black" }}>
+        {mode === "edit" ? "Update Todo" : "Create Todo"}
+      </h2>
       <div className={styles.todoForm}>
         <form onSubmit={handleSubmit}>
           <div className={styles.todoFormGroup}>
@@ -105,7 +99,6 @@ export default function CreateTodoComp() {
               selected={formData.date}
               onChange={handleDateChange}
               dateFormat="yyyy-MM-dd"
-              portalId="root-portal"
             />
           </div>
 

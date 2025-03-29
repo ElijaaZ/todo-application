@@ -2,29 +2,24 @@ const Todo = require("../models/Todo");
 
 exports.createTodo = async (req, res) => {
   try {
-    const { title, description, group, date } = req.body;
+    const { title, description, date } = req.body;
 
     if (!title) {
       return res.status(400).json({ message: "Title is required" });
     }
 
-    if (!group) {
-        return res.status(400).json({ message: "Group is required" });
-      }
-
-      if (!date) {
-        return res.status(400).json({ message: "Date is required"})
-      }
+    if (!date) {
+      return res.status(400).json({ message: "Date is required" });
+    }
 
     const todoData = {
       title,
       description,
-      group,
-      date
+      date,
     };
 
     if (req.user && req.user.userId) {
-        todoData.user = req.user.userId;
+      todoData.user = req.user.userId;
     }
 
     const todo = new Todo(todoData);
@@ -37,108 +32,70 @@ exports.createTodo = async (req, res) => {
   }
 };
 
-exports.getTodaysTodos = async (req, res) => {
-    try {
-        const today = new Date();
-        const startOfDay = new Date(today.setHours(0, 0, 0, 0));
-        const endOfDay = new Date(today.setHours(23, 59, 59, 999));
+exports.getAllTodos = async (req, res) => {
+  try {
+    const todos = await Todo.find();
 
-        const todos = await Todo.find({
-            user: req.user.userId,
-            date: { $gte: startOfDay, $lte: endOfDay },
-        });
-        return res.status(200).json(todos);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Server error" });
-    }
+    return res.status(200).json(todos);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
 };
 
-exports.getTodos = async (req, res) => {
-    try {
-        const { group } = req.query;
-        const userId = req.user.userId;
-
-        if (group === "All") {
-            const todos = await Todo.find({ user: userId });
-            return res.json(todos);
-        }
-
-        const filter = group ? { group, user: userId } : { user: userId };
-        const todos = await Todo.find(filter);
-        res.json(todos);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Server error" });
-    }
-}
-
-exports.getAllTodos = async (req, res) => {
-
-    try {
-        const todos = await Todo.find();
-
-        return res.status(200).json(todos);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Server error"})
-    }
-}
-
 exports.deleteTodo = async (req, res) => {
-    try {
-        const { id } = req.params;
+  try {
+    const { id } = req.params;
 
-        // Hitta todon
-        const deletedTodo = await Todo.findByIdAndDelete(id);
+    // Hitta todon
+    const deletedTodo = await Todo.findByIdAndDelete(id);
 
-        // Kolla om todon finns
-        if (!deletedTodo) {
-            return res.status(404).json({ message: "Todo not found" });
-        }
-
-        return res.status(200).json({ message: "Todo deleted successfully" });
-
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Server error" });
+    // Kolla om todon finns
+    if (!deletedTodo) {
+      return res.status(404).json({ message: "Todo not found" });
     }
-}
+
+    return res.status(200).json({ message: "Todo deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
 
 exports.updateTodo = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const { completed } = req.body;
+  try {
+    const { id } = req.params;
+    const { completed } = req.body;
 
-        const updatedTodo = await Todo.findByIdAndUpdate(
-            id,
-            { completed },
-            { new: true }
-        );
+    const updatedTodo = await Todo.findByIdAndUpdate(
+      id,
+      { completed },
+      { new: true }
+    );
 
-        if (!updatedTodo) {
-            return res.status(404).json({ message: "Todo not found" });
-        }
-
-        return res.status(200).json(updatedTodo);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Server error" });
+    if (!updatedTodo) {
+      return res.status(404).json({ message: "Todo not found" });
     }
-}
+
+    return res.status(200).json(updatedTodo);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
 
 exports.getSingleTodo = async (req, res) => {
-    try {
-        const todoId = req.params.todoId;
+  try {
+    const todoId = req.params.todoId;
 
-        const todo = await Todo.findById(todoId);
+    const todo = await Todo.findById(todoId);
 
-        if (!todo) {
-            return res.status(404).json({ message: "Todo not found" });
-        }
-        return res.status(200).json(todo);
-    } catch (error) {
-        console.error("Error fetching todo: ", error);
-        return res.status(500).json({ message: "Server error" });
+    if (!todo) {
+      return res.status(404).json({ message: "Todo not found" });
     }
-}
+    return res.status(200).json(todo);
+  } catch (error) {
+    console.error("Error fetching todo: ", error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};

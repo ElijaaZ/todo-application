@@ -3,11 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import styles from "../styles/header.module.css";
 import { FaHome, FaTasks, FaRegStickyNote } from "react-icons/fa";
 import AddTodoButton from "./AddTodoButton";
-import TodoModal from "./TodoModal";
 
-const Header = () => {
+const Header = ({ openModal }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showModal, setShowModal] = useState(false);
   const location = useLocation();
 
   const date = new Date();
@@ -26,8 +24,6 @@ const Header = () => {
     switch (path) {
       case "/":
         return "Home";
-      case "/tasks":
-        return "Tasks";
       case "/notes":
         return "Notes";
       case "/calendar":
@@ -85,11 +81,10 @@ const Header = () => {
             <FaRegStickyNote className={styles.iconItem} /> Notes
           </Link>
           <div className={styles.buttonWrapper}>
-            <AddTodoButton onClick={() => setShowModal(true)} />
+            <AddTodoButton onClick={openModal} />
           </div>
         </div>
       </div>
-      {showModal && <TodoModal closeModal={() => setShowModal(false)} />}
     </div>
   );
 };
