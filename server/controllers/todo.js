@@ -65,11 +65,11 @@ exports.deleteTodo = async (req, res) => {
 exports.updateTodo = async (req, res) => {
   try {
     const { id } = req.params;
-    const { completed } = req.body;
+    const { title, description, date, completed } = req.body;
 
     const updatedTodo = await Todo.findByIdAndUpdate(
       id,
-      { completed },
+      { title, description, date, completed },
       { new: true }
     );
 
