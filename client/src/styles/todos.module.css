@@ -177,3 +177,14 @@ textarea:focus {
   flex-direction: column;
   gap: 15px;
 }
+.edit_button {
+  width: 75px;
+  padding: 5px 0;
+  border: 2px solid #ff6500;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  color: #ff6500;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
