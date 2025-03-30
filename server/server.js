@@ -3,7 +3,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config({ path: "./.env" });
-const cookieParser = require("cookie-parser");
 
 console.log("Server is starting...");
 
@@ -19,7 +18,6 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: allowedOrigins,
-    credentials: true, // Tillåt cookies
   })
 ); // Gör att din frontend kan kommunicera med din backend
 
