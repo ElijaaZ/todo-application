@@ -23,7 +23,6 @@ app.use(
 
 // Middleware
 app.use(express.json()); // Hanterar JSON-body i POST-begäran
-app.use(cookieParser());
 
 // db connection
 mongoose
