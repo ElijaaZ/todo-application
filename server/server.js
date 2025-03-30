@@ -32,9 +32,11 @@ mongoose
 
 // import routes
 const todoRoutes = require("./routes/todo");
+const noteRoutes = require("./routes/notes");
 
 // Routes
 app.use("/api", todoRoutes);
+app.use("/api", noteRoutes);
 
 //Port
 const port = process.env.PORT || 8000;

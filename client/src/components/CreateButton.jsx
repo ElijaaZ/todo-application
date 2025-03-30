@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/todoButton.module.css";
 
-const AddTodoButton = ({ onClick }) => {
+const CreateButton = ({ onClick }) => {
   return (
     <button className={styles.todoButton} onClick={onClick}>
       +
@@ -9,4 +9,4 @@ const AddTodoButton = ({ onClick }) => {
   );
 };
 
-export default AddTodoButton;
+export default CreateButton;

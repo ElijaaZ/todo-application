@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import AppWrapper from "./components/AppWrapper";
-import NotesPage from "./components/NotesPage";
+import NotesPage from "./pages/NotesPage";
 import Header from "./components/Header";
 
 function App() {

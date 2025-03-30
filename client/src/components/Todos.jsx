@@ -34,7 +34,7 @@ const Todos = () => {
         toggleTodo={toggleTodo}
         deleteTodo={deleteTodo}
         updateTodo={updateTodo}
-        createTodo={createTodo} // 👈 lägg till denna
+        createTodo={createTodo}
       />
 
       <Pagination

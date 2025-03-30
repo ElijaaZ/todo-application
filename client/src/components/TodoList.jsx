@@ -1,4 +1,3 @@
-// src/components/TodoList.jsx
 import React, { useState, useEffect } from "react";
 import styles from "../styles/todos.module.css";
 import { FaTrash } from "react-icons/fa";
@@ -30,8 +29,8 @@ const TodoList = ({
 
   useEffect(() => {
     const handleOpen = () => setShowCreateModal(true);
-    window.addEventListener("open-create-modal", handleOpen);
-    return () => window.removeEventListener("open-create-modal", handleOpen);
+    window.addEventListener("create-todo", handleOpen);
+    return () => window.removeEventListener("create-todo", handleOpen);
   }, []);
 
   const handleEditClick = (todo) => {

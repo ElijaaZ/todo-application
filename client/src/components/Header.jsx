@@ -2,8 +2,7 @@ import React, { useState, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "../styles/header.module.css";
 import { FaTasks, FaRegStickyNote } from "react-icons/fa";
-import AddTodoButton from "./AddTodoButton";
-import CreateModal from "./Modals/CreateModal";
+import CreateButton from "./CreateButton";
 
 const Header = ({ onAddClick }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -33,7 +32,12 @@ const Header = ({ onAddClick }) => {
   }, [location.pathname]);
 
   const handleAddClick = () => {
-    window.dispatchEvent(new Event("open-create-modal"));
+    console.log("Knapp klickad, path:", location.pathname);
+    if (location.pathname === "/") {
+      window.dispatchEvent(new Event("create-todo"));
+    } else if (location.pathname === "/notes") {
+      window.dispatchEvent(new Event("create-note"));
+    }
   };
 
   return (
@@ -71,14 +75,13 @@ const Header = ({ onAddClick }) => {
               isActive("/notes") ? styles.active : ""
             }`}
             onClick={() => {
-              console.log("hej");
               closeMenu();
             }}
           >
             <FaRegStickyNote className={styles.iconItem} /> Notes
           </Link>
           <div className={styles.buttonWrapper}>
-            <AddTodoButton onClick={handleAddClick} />
+            <CreateButton onClick={handleAddClick} />
           </div>
         </div>
       </div>

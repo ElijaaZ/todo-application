@@ -35,10 +35,10 @@ const useTodoLogic = () => {
     try {
       const response = await fetch(`${API_BASE_URL}/deletetodo/${id}`, {
         method: "DELETE",
-        credentials: "include",
       });
 
       if (!response.ok) throw new Error("Failed to delete todo");
+      console.log("hej");
 
       setTodos((prev) => prev.filter((todo) => todo._id !== id));
     } catch (error) {
