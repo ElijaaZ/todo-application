@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const todoSchema = new mongoose.Schema(
+const noteSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -9,12 +9,8 @@ const todoSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    date: {
-      type: Date,
-      required: true,
-    },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Todo", todoSchema);
+module.exports = mongoose.model("Note", noteSchema);

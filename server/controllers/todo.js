@@ -18,27 +18,21 @@ exports.createTodo = async (req, res) => {
       date,
     };
 
-    if (req.user && req.user.userId) {
-      todoData.user = req.user.userId;
-    }
-
     const todo = new Todo(todoData);
     const savedTodo = await todo.save();
 
     return res.status(201).json(savedTodo);
-  } catch (error) {
-    console.error(error);
+  } catch {
     return res.status(500).json({ message: "Server error" });
   }
 };
 
-exports.getAllTodos = async (req, res) => {
+exports.getAllTodos = async (_req, res) => {
   try {
     const todos = await Todo.find();
 
     return res.status(200).json(todos);
-  } catch (error) {
-    console.error(error);
+  } catch {
     return res.status(500).json({ message: "Server error" });
   }
 };
@@ -47,17 +41,14 @@ exports.deleteTodo = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Hitta todon
     const deletedTodo = await Todo.findByIdAndDelete(id);
 
-    // Kolla om todon finns
     if (!deletedTodo) {
       return res.status(404).json({ message: "Todo not found" });
     }
 
     return res.status(200).json({ message: "Todo deleted successfully" });
   } catch (error) {
-    console.error(error);
     return res.status(500).json({ message: "Server error" });
   }
 };
@@ -78,24 +69,22 @@ exports.updateTodo = async (req, res) => {
     }
 
     return res.status(200).json(updatedTodo);
-  } catch (error) {
-    console.error(error);
+  } catch {
     return res.status(500).json({ message: "Server error" });
   }
 };
 
 exports.getSingleTodo = async (req, res) => {
   try {
-    const todoId = req.params.todoId;
+    const { id } = req.params;
 
-    const todo = await Todo.findById(todoId);
+    const todo = await Todo.findById(id);
 
     if (!todo) {
       return res.status(404).json({ message: "Todo not found" });
     }
     return res.status(200).json(todo);
-  } catch (error) {
-    console.error("Error fetching todo: ", error);
+  } catch {
     return res.status(500).json({ message: "Server error" });
   }
 };

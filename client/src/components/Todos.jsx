@@ -1,32 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "../styles/todos.module.css";
 import TodoList from "./TodoList.jsx";
 import Pagination from "./Pagination.jsx";
-import PaginationHook from "../hooks/PaginationHook.jsx";
 import useTodoLogic from "../hooks/useTodoLogic";
-import CreateModal from "./CreateModal.jsx";
 
-const Todos = ({ passCreateTodo }) => {
-  const [showModal, setShowModal] = useState(false);
-
+const Todos = () => {
   const {
-    todos,
+    currentItems,
+    totalPages,
+    currentPage,
+    goToPage,
     expandedTodo,
     toggleTodo,
     deleteTodo,
-    createTodo,
     updateTodo,
     error,
+    createTodo,
   } = useTodoLogic();
-
-  useEffect(() => {
-    if (passCreateTodo) {
-      passCreateTodo(createTodo);
-    }
-  }, [createTodo, passCreateTodo]);
-
-  const { currentItems, totalPages, currentPage, goToPage } =
-    PaginationHook(todos);
 
   return (
     <div className={styles.today_container}>
@@ -34,15 +24,8 @@ const Todos = ({ passCreateTodo }) => {
 
       {!error && (
         <h2 style={{ color: "white" }}>
-          {todos.length === 0 ? "No tasks found" : "Tasks"}
+          {currentItems.length === 0 ? "No tasks found" : "Tasks"}
         </h2>
-      )}
-
-      {showModal && (
-        <CreateModal
-          closeModal={() => setShowModal(false)}
-          onTodoCreated={createTodo}
-        />
       )}
 
       <TodoList
@@ -51,6 +34,7 @@ const Todos = ({ passCreateTodo }) => {
         toggleTodo={toggleTodo}
         deleteTodo={deleteTodo}
         updateTodo={updateTodo}
+        createTodo={createTodo} // 👈 lägg till denna
       />
 
       <Pagination

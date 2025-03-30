@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import API_BASE_URL from "../api/apiConfig";
+import PaginationHook from "../hooks/PaginationHook";
 
 const useTodoLogic = () => {
   const [todos, setTodos] = useState([]);
   const [expandedTodo, setExpandedTodo] = useState(null);
   const [error, setError] = useState(null);
+
+  const { currentItems, totalPages, currentPage, goToPage } =
+    PaginationHook(todos);
 
   const toggleTodo = (id) => {
     setExpandedTodo((prev) => (prev === id ? null : id));
@@ -99,7 +103,10 @@ const useTodoLogic = () => {
 
   return {
     todos,
-    setTodos,
+    currentItems,
+    totalPages,
+    currentPage,
+    goToPage,
     expandedTodo,
     toggleTodo,
     deleteTodo,

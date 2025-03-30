@@ -1,14 +1,17 @@
+// src/components/TodoList.jsx
 import React, { useState, useEffect } from "react";
 import styles from "../styles/todos.module.css";
 import { FaTrash } from "react-icons/fa";
-import UpdateModal from "./UpdateModal";
+import UpdateModal from "./Modals/UpdateModal";
+import ViewModal from "./Modals/ViewModal";
+import CreateModal from "./Modals/CreateModal";
 
 const TodoList = ({
   todos,
   expandedTodo,
-  toggleTodo,
   deleteTodo,
   updateTodo,
+  createTodo,
 }) => {
   const [checkedItems, setCheckedItems] = useState(() => {
     const stored = localStorage.getItem("checkedTodos");
@@ -21,6 +24,15 @@ const TodoList = ({
 
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState(null);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [viewTodo, setViewTodo] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+
+  useEffect(() => {
+    const handleOpen = () => setShowCreateModal(true);
+    window.addEventListener("open-create-modal", handleOpen);
+    return () => window.removeEventListener("open-create-modal", handleOpen);
+  }, []);
 
   const handleEditClick = (todo) => {
     setSelectedTodo(todo);
@@ -31,12 +43,7 @@ const TodoList = ({
     <>
       <ul className={styles.todoList}>
         {todos.map((todo) => (
-          <li
-            key={todo._id}
-            className={`${styles.todoItem} ${
-              expandedTodo === todo._id ? styles.expanded : ""
-            }`}
-          >
+          <li key={todo._id} className={styles.todoItem}>
             <div className={styles.todoBox}>
               <input
                 type="checkbox"
@@ -51,12 +58,20 @@ const TodoList = ({
               />
               <div
                 className={styles.todoContent}
-                onClick={() => toggleTodo(todo._id)}
+                onClick={() => {
+                  setViewTodo(todo);
+                  setShowViewModal(true);
+                }}
               >
                 <strong>{todo.title}</strong>
               </div>
               <div className={styles.todo_info}>
-                <button onClick={() => handleEditClick(todo)}>EDIT</button>
+                <button
+                  className={styles.edit_button}
+                  onClick={() => handleEditClick(todo)}
+                >
+                  EDIT
+                </button>
                 <FaTrash
                   style={{ fontSize: "22px", color: "#ff6500" }}
                   onClick={() => deleteTodo(todo._id)}
@@ -78,6 +93,19 @@ const TodoList = ({
           </li>
         ))}
       </ul>
+
+      {showViewModal && viewTodo && (
+        <ViewModal
+          todo={viewTodo}
+          closeModal={() => setShowViewModal(false)}
+          onEdit={() => {
+            setSelectedTodo(viewTodo);
+            setShowEditModal(true);
+            setShowViewModal(false);
+          }}
+        />
+      )}
+
       {showEditModal && selectedTodo && (
         <UpdateModal
           todo={selectedTodo}
@@ -86,6 +114,12 @@ const TodoList = ({
             updateTodo(id, updatedData);
             setShowEditModal(false);
           }}
+        />
+      )}
+      {showCreateModal && (
+        <CreateModal
+          closeModal={() => setShowCreateModal(false)}
+          createTodo={createTodo}
         />
       )}
     </>

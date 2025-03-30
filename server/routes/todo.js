@@ -14,6 +14,6 @@ router.post("/createtodo", createTodo);
 router.get("/alltodos", getAllTodos);
 router.delete("/deletetodo/:id", deleteTodo);
 router.put("/updatetodo/:id", updateTodo);
-router.get("/getsingletodo/:todoId", getSingleTodo);
+router.get("/getsingletodo/:id", getSingleTodo);
 
 module.exports = router;

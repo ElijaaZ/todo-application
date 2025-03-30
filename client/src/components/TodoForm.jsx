@@ -1,14 +1,10 @@
+// src/components/TodoForm.jsx
 import React, { useState, useEffect } from "react";
 import styles from "../styles/todos.module.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default function TodoForm({
-  mode = "create",
-  onSubmit,
-  onClose,
-  initialData = {},
-}) {
+const TodoForm = ({ mode = "create", onSubmit, onClose, initialData = {} }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -51,10 +47,8 @@ export default function TodoForm({
       if (success !== false) {
         setMessage(mode === "edit" ? "Todo updated" : "Todo created");
         setErrors({});
-        setTimeout(() => {
-          setMessage(mode === "edit" ? "Update Todo" : "Create Todo");
-          onClose();
-        }, 800);
+        setMessage(mode === "edit" ? "Update Todo" : "Create Todo");
+        onClose();
       }
     } catch (error) {
       setErrors({ general: "An unexpected error occurred." });
@@ -63,7 +57,7 @@ export default function TodoForm({
 
   return (
     <div className={styles.createTodoContainer}>
-      <h2 style={{ color: "black" }}>
+      <h2 style={{ color: "black", marginBottom: "20px" }}>
         {mode === "edit" ? "Update Todo" : "Create Todo"}
       </h2>
       <div className={styles.todoForm}>
@@ -77,6 +71,7 @@ export default function TodoForm({
               value={formData.title}
               onChange={handleInputChange}
               required
+              className={styles.todoInput}
             />
           </div>
 
@@ -109,4 +104,6 @@ export default function TodoForm({
       </div>
     </div>
   );
-}
+};
+
+export default TodoForm;

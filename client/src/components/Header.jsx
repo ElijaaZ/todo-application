@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "../styles/header.module.css";
-import { FaHome, FaTasks, FaRegStickyNote } from "react-icons/fa";
+import { FaTasks, FaRegStickyNote } from "react-icons/fa";
 import AddTodoButton from "./AddTodoButton";
+import CreateModal from "./Modals/CreateModal";
 
-const Header = ({ openModal }) => {
+const Header = ({ onAddClick }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -20,17 +21,19 @@ const Header = ({ openModal }) => {
   const closeMenu = () => setMenuOpen(false);
   const isActive = (path) => location.pathname === path;
 
-  const getTitle = (path) => {
-    switch (path) {
+  const getTitle = useMemo(() => {
+    switch (location.pathname) {
       case "/":
-        return "Home";
+        return "Tasks";
       case "/notes":
         return "Notes";
-      case "/calendar":
-        return "Calendar";
       default:
         return "";
     }
+  }, [location.pathname]);
+
+  const handleAddClick = () => {
+    window.dispatchEvent(new Event("open-create-modal"));
   };
 
   return (
@@ -41,7 +44,7 @@ const Header = ({ openModal }) => {
         <span></span>
       </div>
 
-      <h1 className={styles.pageTitle}>{getTitle(location.pathname)}</h1>
+      <h1 className={styles.pageTitle}>{getTitle}</h1>
 
       {menuOpen && <div className={styles.overlay} onClick={closeMenu}></div>}
 
@@ -60,15 +63,6 @@ const Header = ({ openModal }) => {
             }`}
             onClick={closeMenu}
           >
-            <FaHome className={styles.iconItem} /> Home
-          </Link>
-          <Link
-            to="/tasks"
-            className={`${styles.menuItem} ${
-              isActive("/tasks") ? styles.active : ""
-            }`}
-            onClick={closeMenu}
-          >
             <FaTasks className={styles.iconItem} /> Tasks
           </Link>
           <Link
@@ -76,12 +70,15 @@ const Header = ({ openModal }) => {
             className={`${styles.menuItem} ${
               isActive("/notes") ? styles.active : ""
             }`}
-            onClick={closeMenu}
+            onClick={() => {
+              console.log("hej");
+              closeMenu();
+            }}
           >
             <FaRegStickyNote className={styles.iconItem} /> Notes
           </Link>
           <div className={styles.buttonWrapper}>
-            <AddTodoButton onClick={openModal} />
+            <AddTodoButton onClick={handleAddClick} />
           </div>
         </div>
       </div>
