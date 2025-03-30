@@ -24,7 +24,7 @@ const Todos = () => {
 
       {!error && (
         <h2 style={{ color: "white" }}>
-          {currentItems.length === 0 ? "No tasks found" : "Tasks"}
+          {currentItems.length === 0 ? "No tasks found" : ""}
         </h2>
       )}
 
