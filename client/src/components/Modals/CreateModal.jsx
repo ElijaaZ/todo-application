@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/todos.module.css";
+import styles from "../../styles/modal.module.css";
 import TodoForm from "../TodoForm";
 
 const CreateModal = ({ closeModal, createTodo }) => {

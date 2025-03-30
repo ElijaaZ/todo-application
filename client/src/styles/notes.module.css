@@ -1,0 +1,26 @@
+.noteForm {
+  width: 100%;
+  display: flex;
+  max-width: 350px;
+  flex-direction: column;
+  color: white;
+  gap: 25px;
+  margin: 0 auto;
+}
+.noteForm input,
+.noteForm textarea,
+.note_button {
+  max-width: 100%;
+  border: 2px solid #174031;
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 15px;
+}
+.note_button {
+  background-color: #ff6500;
+  color: #fff;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}

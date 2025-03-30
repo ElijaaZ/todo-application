@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/todos.module.css";
+import styles from "../../styles/modal.module.css";
 
 const ViewModal = ({ todo, closeModal, onEdit }) => {
   return (

@@ -60,48 +60,46 @@ const TodoForm = ({ mode = "create", onSubmit, onClose, initialData = {} }) => {
       <h2 style={{ color: "black", marginBottom: "20px" }}>
         {mode === "edit" ? "Update Todo" : "Create Todo"}
       </h2>
-      <div className={styles.todoForm}>
-        <form onSubmit={handleSubmit}>
-          <div className={styles.todoFormGroup}>
-            {errors.title && <p className={styles.errorText}>{errors.title}</p>}
-            <input
-              type="text"
-              name="title"
-              placeholder="Title"
-              value={formData.title}
-              onChange={handleInputChange}
-              required
-              className={styles.todoInput}
-            />
-          </div>
+      <form className={styles.todoForm} onSubmit={handleSubmit}>
+        <div className={styles.todoFormGroup}>
+          {errors.title && <p className={styles.errorText}>{errors.title}</p>}
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            value={formData.title}
+            onChange={handleInputChange}
+            required
+            className={styles.todoInput}
+          />
+        </div>
 
-          <div className={styles.todoFormGroup}>
-            {errors.description && (
-              <p className={styles.errorText}>{errors.description}</p>
-            )}
-            <textarea
-              name="description"
-              placeholder="Description"
-              value={formData.description}
-              onChange={handleInputChange}
-            />
-          </div>
+        <div className={styles.todoFormGroup}>
+          {errors.description && (
+            <p className={styles.errorText}>{errors.description}</p>
+          )}
+          <textarea
+            name="description"
+            placeholder="Description"
+            value={formData.description}
+            onChange={handleInputChange}
+          />
+        </div>
 
-          <div className={styles.todoFormGroup}>
-            <label>Date:</label>
-            <DatePicker
-              className={styles.datepicker}
-              selected={formData.date}
-              onChange={handleDateChange}
-              dateFormat="yyyy-MM-dd"
-            />
-          </div>
+        <div className={styles.todoFormGroup}>
+          <label>Date:</label>
+          <DatePicker
+            className={styles.datepicker}
+            selected={formData.date}
+            onChange={handleDateChange}
+            dateFormat="yyyy-MM-dd"
+          />
+        </div>
 
-          <button type="submit" className={styles.createTodoBtn}>
-            {message}
-          </button>
-        </form>
-      </div>
+        <button type="submit" className={styles.createTodoBtn}>
+          {message}
+        </button>
+      </form>
     </div>
   );
 };

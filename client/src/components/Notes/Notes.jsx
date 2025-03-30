@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import NotesCard from "./NotesCard";
 import styles from "../../styles/notes.module.css";
 import API_BASE_URL from "../../api/apiConfig";
-import CreateButton from "../CreateButton";
+import NoteModal from "./NoteModal";
 
 const Notes = () => {
   const [notes, setNotes] = useState([
@@ -57,6 +57,7 @@ const Notes = () => {
 
   return (
     <div className={styles.notesContainer}>
+      <NoteModal />
       <div className={styles.notesGrid}>
         {notes.map((note) => (
           <NotesCard
