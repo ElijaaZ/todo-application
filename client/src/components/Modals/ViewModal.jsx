@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../../styles/modal.module.css";
+import style from "../../styles/todos.module.css";
 
 const ViewModal = ({ todo, closeModal, onEdit }) => {
   return (
@@ -14,7 +15,7 @@ const ViewModal = ({ todo, closeModal, onEdit }) => {
           <strong>Date:</strong> {new Date(todo.date).toLocaleDateString()}
         </p>
         <div style={{ marginTop: "1rem", display: "flex", gap: "10px" }}>
-          <button className={styles.edit_button} onClick={onEdit}>
+          <button className={style.edit_button} onClick={onEdit}>
             EDIT
           </button>
           <button className={styles.close_btn} onClick={closeModal}>
