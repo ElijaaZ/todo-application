@@ -38,7 +38,6 @@ const useTodoLogic = () => {
       });
 
       if (!response.ok) throw new Error("Failed to delete todo");
-      console.log("hej");
 
       setTodos((prev) => prev.filter((todo) => todo._id !== id));
     } catch (error) {

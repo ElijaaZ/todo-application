@@ -32,7 +32,6 @@ const Header = ({ onAddClick }) => {
   }, [location.pathname]);
 
   const handleAddClick = () => {
-    console.log("Knapp klickad, path:", location.pathname);
     if (location.pathname === "/") {
       window.dispatchEvent(new Event("create-todo"));
     } else if (location.pathname === "/notes") {

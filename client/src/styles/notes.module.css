@@ -24,3 +24,54 @@
   cursor: pointer;
   font-weight: bold;
 }
+.notesGrid {
+  column-count: 3;
+  column-gap: 16px;
+  padding: 10px;
+}
+.noteCard {
+  background: white;
+  border-radius: 12px;
+  break-inside: avoid;
+  margin-bottom: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+}
+.noteHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.noteTitle {
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  flex-grow: 1;
+}
+.noteTextarea {
+  border: none;
+  min-height: 100px;
+  max-height: none;
+  overflow: hidden;
+  display: block;
+  height: auto;
+  line-height: 1.4;
+  resize: none;
+}
+.notesContainer {
+  overflow-y: visible;
+  height: auto;
+  padding: 15px;
+}
+@media (max-width: 768px) {
+  .notesGrid {
+    display: flex;
+    flex-direction: column;
+  }
+}

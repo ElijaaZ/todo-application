@@ -10,7 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 .app_wrapper {
   background-color: #1e3e62;
@@ -21,10 +21,19 @@ body {
   width: 100vw;
   max-width: 1300px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.pageContent {
+  overflow-y: auto;
+  height: 100%;
 }
 
 @media (min-width: 768px) {
   .pageContent {
+    overflow-y: auto;
     padding-left: 300px;
+    box-sizing: border-box;
   }
 }

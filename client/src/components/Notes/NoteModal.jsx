@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "../../styles/notes.module.css";
-import API_BASE_URL from "../../api/apiConfig";
 import style from "../../styles/modal.module.css";
 
-const NoteModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const NoteModal = ({ onClose, onCreate }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
   });
-
-  useEffect(() => {
-    const openModal = () => setIsOpen(true);
-    window.addEventListener("create-note", openModal);
-    return () => window.removeEventListener("create-note", openModal);
-  }, []);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -25,33 +17,16 @@ const NoteModal = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const response = await fetch(`${API_BASE_URL}/createnote`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        setFormData({ title: "", description: "" });
-        setIsOpen(false);
-        window.dispatchEvent(new CustomEvent("note-created", { detail: data }));
-      } else {
-        console.error("Create note failed: ", data);
-      }
-    } catch (error) {
-      console.error("Error creating note: ", error);
+    const success = await onCreate(formData);
+    if (success) {
+      setFormData({ title: "", description: "" });
+      onClose();
     }
   };
-  if (!isOpen) return null;
 
   return (
     <>
-      <div className={style.modal_overlay} onClick={() => setIsOpen(false)} />
+      <div className={style.modal_overlay} onClick={onClose} />
       <div className={style.modal}>
         <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
           Create Note
@@ -75,7 +50,7 @@ const NoteModal = () => {
             Create
           </button>
         </form>
-        <button className={style.close_btn} onClick={() => setIsOpen(false)}>
+        <button className={style.close_btn} onClick={onClose}>
           X
         </button>
       </div>
