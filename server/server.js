@@ -18,6 +18,7 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: allowedOrigins,
+    credentials: true,
   })
 ); // Gör att din frontend kan kommunicera med din backend
 
