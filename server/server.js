@@ -30,6 +30,10 @@ mongoose
   .then(() => console.log("**DB CONNECTED**"))
   .catch((error) => console.error("DB CONNECTION ERR => ", error));
 
+app.get("/api/ping", (_req, res) => {
+  res.status(200).json({ message: "pong" });
+});
+
 // import routes
 const todoRoutes = require("./routes/todo");
 const noteRoutes = require("./routes/notes");
