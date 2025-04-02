@@ -39,7 +39,7 @@ const NotesCard = ({ note, onUpdate, onDelete }) => {
           placeholder="Title"
         />
         <FaTrashCan
-          style={{ cursor: "pointer", fontSize: "22" }}
+          style={{ cursor: "pointer", fontSize: "22px" }}
           onClick={() => onDelete(note._id)}
         />
       </div>
