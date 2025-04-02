@@ -7,7 +7,7 @@
 }
 .todoForm {
   width: 100%;
-  max-width: 350px;
+  max-width: 310px;
   display: flex;
   flex-direction: column;
   color: white;
@@ -59,32 +59,22 @@
   top: -25px;
 }
 
-.activeGroup {
-  background-color: black;
-  color: white;
-}
-
-.today_container,
-.singleGroupContainer {
+.todos_container {
   padding: 20px;
-  border-radius: 8px;
 }
 
 .todoList {
   list-style-type: none;
-  padding: 0;
-}
-
-.todoItem {
-  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .todoBox {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 6px;
   padding: 10px;
   cursor: pointer;
 }
@@ -126,16 +116,7 @@
   flex-grow: 1;
 }
 
-.toggleIcon {
-  font-size: 18px;
-}
-.todoDetails {
-  padding: 10px;
-  background-color: white;
-  border-radius: 0 0 5px 5px;
-  word-wrap: break-word;
-}
-.today_container h2 {
+.todos_container h2 {
   color: white;
 }
 .pagination {
@@ -163,19 +144,10 @@
   background-color: #ff6500;
 }
 
-input:focus,
-textarea:focus {
-  outline: none;
-}
 .todo_info {
   display: flex;
   gap: 20px;
   align-items: center;
-}
-.view_content {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
 }
 .edit_button {
   width: 75px;
@@ -187,4 +159,10 @@ textarea:focus {
   color: #ff6500;
   font-weight: bold;
   letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .todoForm {
+    gap: 5px;
+  }
 }

@@ -19,7 +19,7 @@ const Todos = () => {
   } = useTodoLogic();
 
   return (
-    <div className={styles.today_container}>
+    <div className={styles.todos_container}>
       {error && <p className={styles.errorText}>{error}</p>}
 
       {!error && (

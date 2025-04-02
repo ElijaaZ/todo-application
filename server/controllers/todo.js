@@ -73,18 +73,3 @@ exports.updateTodo = async (req, res) => {
     return res.status(500).json({ message: "Server error" });
   }
 };
-
-exports.getSingleTodo = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const todo = await Todo.findById(id);
-
-    if (!todo) {
-      return res.status(404).json({ message: "Todo not found" });
-    }
-    return res.status(200).json(todo);
-  } catch {
-    return res.status(500).json({ message: "Server error" });
-  }
-};

@@ -4,7 +4,7 @@ import styles from "../styles/header.module.css";
 import { FaTasks, FaRegStickyNote } from "react-icons/fa";
 import CreateButton from "./CreateButton";
 
-const Header = ({ onAddClick }) => {
+const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 

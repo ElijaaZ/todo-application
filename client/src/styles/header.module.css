@@ -49,14 +49,6 @@
   cursor: pointer;
   text-decoration: none;
 }
-.divider {
-  display: block;
-  width: 100%;
-  background-color: white;
-  height: 1px;
-  content: "";
-  margin: 10px 0;
-}
 
 .menuContainer {
   position: absolute;
