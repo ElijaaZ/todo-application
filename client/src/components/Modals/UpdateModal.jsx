@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../styles/modal.module.css";
-import TodoForm from "../TodoForm";
+import TodoForm from "../todos/TodoForm";
 
 const UpdateModal = ({ closeModal, todo, onTodoUpdated }) => {
   return (

@@ -1,10 +1,12 @@
 import React, { useState, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
-import styles from "../styles/header.module.css";
+import styles from "../../styles/header.module.css";
 import { FaTasks, FaRegStickyNote } from "react-icons/fa";
-import CreateButton from "./CreateButton";
+import CreateButton from "../CreateButton";
+import { useModal } from "../context/ModalContext";
 
-const Header = () => {
+const Header = ({ createTodo, createNote }) => {
+  const { openModal } = useModal();
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -33,9 +35,13 @@ const Header = () => {
 
   const handleAddClick = () => {
     if (location.pathname === "/") {
-      window.dispatchEvent(new Event("create-todo"));
+      openModal("create-todo", {
+        onCreate: createTodo,
+      });
     } else if (location.pathname === "/notes") {
-      window.dispatchEvent(new Event("create-note"));
+      openModal("create-note", {
+        onCreate: createNote,
+      });
     }
   };
 
@@ -73,9 +79,7 @@ const Header = () => {
             className={`${styles.menuItem} ${
               isActive("/notes") ? styles.active : ""
             }`}
-            onClick={() => {
-              closeMenu();
-            }}
+            onClick={closeMenu}
           >
             <FaRegStickyNote className={styles.iconItem} /> Notes
           </Link>

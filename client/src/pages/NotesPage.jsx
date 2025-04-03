@@ -3,7 +3,7 @@ import Notes from "../components/Notes/Notes";
 
 const NotesPage = () => {
   return (
-    <div>
+    <div style={{ overflow: "auto", height: "100%" }}>
       <Notes />
     </div>
   );

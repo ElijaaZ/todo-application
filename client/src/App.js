@@ -1,23 +1,24 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import AppWrapper from "./components/AppWrapper";
+import AppWrapper from "./components/layout/AppWrapper";
 import NotesPage from "./pages/NotesPage";
-import Header from "./components/Header";
+import { ModalProvider } from "./components/context/ModalContext";
+import ModalManager from "./components/layout/ModalManager";
 
 function App() {
   return (
-    <AppWrapper>
-      <Router>
-        <Header />
-        <div className="pageContent">
+    <ModalProvider>
+      <AppWrapper>
+        <Router>
+          <ModalManager />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/notes" element={<NotesPage />} />
           </Routes>
-        </div>
-      </Router>
-    </AppWrapper>
+        </Router>
+      </AppWrapper>
+    </ModalProvider>
   );
 }
 

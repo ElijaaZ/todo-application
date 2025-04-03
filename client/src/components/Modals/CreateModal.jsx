@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "../../styles/modal.module.css";
-import TodoForm from "../TodoForm";
+import TodoForm from "../todos/TodoForm";
 
-const CreateModal = ({ closeModal, createTodo }) => {
+const CreateModal = ({ closeModal, onCreate }) => {
   const handleCreate = async (formData) => {
-    const success = await createTodo(formData);
+    const success = await onCreate(formData);
     if (success) {
       closeModal();
     }

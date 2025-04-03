@@ -25,15 +25,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-.pageContent {
-  overflow-y: auto;
-  height: 100%;
-}
 
 @media (min-width: 768px) {
-  .pageContent {
-    overflow-y: auto;
-    padding-left: 300px;
-    box-sizing: border-box;
-  }
 }

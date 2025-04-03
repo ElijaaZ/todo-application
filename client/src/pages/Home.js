@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Todos from "../components/Todos";
+import Todos from "../components/todos/Todos";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);

@@ -27,7 +27,7 @@
 .notesGrid {
   column-count: 3;
   column-gap: 16px;
-  padding: 10px;
+  padding-left: 300px;
 }
 .noteCard {
   background: white;
@@ -72,5 +72,6 @@
   .notesGrid {
     display: flex;
     flex-direction: column;
+    padding: 5px;
   }
 }

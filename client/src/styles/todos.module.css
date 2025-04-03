@@ -59,15 +59,13 @@
   top: -25px;
 }
 
-.todos_container {
-  padding: 20px;
-}
-
 .todoList {
   list-style-type: none;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  padding: 20px;
+  padding-left: 320px;
 }
 
 .todoBox {
@@ -164,5 +162,8 @@
 @media (max-width: 768px) {
   .todoForm {
     gap: 5px;
+  }
+  .todoList {
+    padding-left: 20px;
   }
 }
