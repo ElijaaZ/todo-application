@@ -10,7 +10,7 @@ console.log("Server is starting...");
 const app = express();
 
 const allowedOrigins = [
-  "https://todo-application-1-9qa5.onrender.com",
+  "https://eliastodoapp.vercel.app",
   "http://localhost:3000",
 ];
 
